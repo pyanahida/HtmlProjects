@@ -55,6 +55,53 @@ Accuracy: <span id="res-acc"></span>
 <img id="F" alt="F" class="hide" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAACACAYAAAAvZ8aYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOcSURBVHhe7dy/61V1HMdxIzQyEC1CJ6EmaWupxlr7oa7uLoJ/hOCg4FDh1B/Q6OLaXxC0FGVE3zUnQRHEEiVfH0g4fHle+x65r/u+531fw2N53nuO33Neg3j9nntob28vmsMYvWCMXjBGLxijF4zRC8boBWP0gjF6wRi9YIxeMEYvGKMXjNELxugFY/SCMXrBGL1gjF4wRi8YoxeM0QvG6AWjyXvy1QGdkw+EzvPCMflIPpXPZXr82WLTn2VqvPaJvC50TRYYTa7IM/nnAMb7bgid54VL8lAeyd9C59k2T+UneVfomiwwmlyTf2f4Wug8w2G5JXTctvtdTgldlwVGk3WOfFr+FDpu292Rk0LXZYHRZJ0jj7+DHwsdt+0y8sTLRr4qdMwSZOSJVSMflR+EjlmCjDyxauQz8pfQMUuQkSdWjXxBxj9F6JglyMgTq0a+KfT+pcjIEzTycflR6P1LkZEnaOTxMeYDofcvxR+SD0P+QyOfl58X7Ff5Xsbn7vuvzQajydyRv5X953hT3l64t2T/dVlhNFnHyPEKMJpk5CIYTTJyEYwmGbkIRpOMXASjSUYugtEkIxfBaJKRi2A0ychFMJpk5CIYTTJyEYwmGbkIRpOMXASjSUYugtEkIxfBaJKRi2A0ychFMJpk5CIYTTJyEYwmc0f+Rug8MRNGk7kj35Yv5MtXRE/6rxP9mcN47TMZv3RI92HjMJrMHXk8CkNP62+7J3JXPhS6DxuH0WTuyEs2HgAYDwLQfdg4jCa7NPJ9ycjNZeQdkJF3QEbeARl5B2TkHZCRd0BG3gHjOz8/FroPG4fRZO7I9+SXBRrfJjC+Z+x9ofuwcRhN5o78nZwQelp/m70j4+siXhO6DxuH0WTuyPn/5DXBaJKRi2A0ychFMJpk5CIYTTJyEYwmGbkIRpOMXASjSUYugtEkIxfBaJKRi2A0ychFMJpk5CIYTTJyEYwmGbkIRpOMXASjSUYugtEkIxfBaJKRi2A0ychFMJpk5CIYTTJyEYwmGbkIRpOMXASjSUYugtEkIxfBaJKRi2A0ychFMJpk5CIYTTJyEYwmGbkIRpOMXASjyXWhMVe5KXSemAmjyUX5TcaT+P/njlwWOk/MhNHkiIyn8A/qDaHzxEwYoxeM0QvG6AVj9IIxesEYvWCMXjBGLxijF4zRC8boBWP0gjF6wRi9YIxeMEYvGKMXjNELxugFY/SCMXrBGL1gjE72Dj0H3fJNetoUzxAAAAAASUVORK5CYII=">
 
 <script>
+// 给看源码的人看的
+const helpOfPhigrosScore = `
+在《Phigros》的非课题模式（即常规单曲结算）中，分数和ACC是两个独立计算的系统：总分由90%的判定分和10%的连击分构成，而ACC（准确度）只衡量打击精准度，与连击无关。
+
+以下是具体的计算公式和规则：
+
+1. 单曲总分计算公式
+
+满分为 1,000,000，拆分为判定分和连击分两部分：
+
+· 判定分（占90万）：计算所有音符的基础判定。
+  · Perfect：获得该音符 100% 的判定分。
+  · Good：获得该音符 65% 的判定分。
+  · Bad / Miss：获得 0% 的判定分。
+  · 公式：判定分 = 900,000 × (Perfect数 + Good数 × 0.65) / 总音符数。
+· 连击分（占10万）：仅与最大连击数（Max Combo）有关。
+  · 公式：连击分 = 100,000 × (最大连击数 / 总音符数)。
+
+补充：如果是课题模式，则没有连击分，分数直接等于ACC × 1,000,000。
+
+---
+
+2. 单曲ACC计算公式
+
+ACC（Accuracy，打击精准度）满分为 100.00%，它不包含任何连击分，只反映你的打击准确度：
+
+· Perfect：获得 100% 的ACC。
+· Good：获得 65% 的ACC。
+· Bad / Miss：获得 0% 的ACC。
+
+公式为：ACC = (Perfect数 + Good数 × 0.65) / 总音符数 × 100%。
+
+---
+
+3. 重要结论
+
+· 分数与ACC不一定挂钩：由于连击分的存在，可能出现“分数高但ACC低”或“ACC高但分数低”的情况。只有当谱面达成全连（FC）时，分数和ACC才会呈现正相关。
+· 结算评级：分数对应以下评级：
+  · φ (Phi)：1,000,000（All Perfect）
+  · ν (V)：960,000 – 999,999
+  · S：920,000 – 959,999
+  · A：880,000 – 919,999
+  · B：820,000 – 879,999
+  · C：700,000 – 819,999
+  · False：0 – 699,999
+`;
+
 // 实时替换输入框文本（自动修正光标位置）
 function autoReplace(id, regex, replace = '') {
     const input = document.getElementById(id);
