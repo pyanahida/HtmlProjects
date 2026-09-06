@@ -132,7 +132,7 @@ function calculate() {
     // 显示
     document.getElementById("res").classList.remove("hide");
     document.getElementById("res-score").textContent = `${parsedScore}`.padStart(7, '0');
-    document.getElementById("res-acc").textContent = `${Math.floor(acc*100)/100}`;
+    document.getElementById("res-acc").textContent = `${acc*100}`.toFixed(2);
     show(parsedScore, (bad + miss == 0));
 
     return;
