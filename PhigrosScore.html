@@ -89,12 +89,13 @@ function calculate() {
     const panDingFen = 900_000 * (perfect + good * 0.65) / total;
     const lianJiFen = 100_000 * (cb / total);
     const score = panDingFen + lianJiFen;
+    const parsedScore = ~~score;
 
     const acc = (perfect + good * 0.65) / total;
     
     // 显示
     document.getElementById("res").classList.remove("hide");
-    document.getElementById("res-score").textContent = `${~~score}`.padStart(7, '0');
+    document.getElementById("res-score").textContent = `${parsedScore}`.padStart(7, '0');
     document.getElementById("res-acc").textContent = `${Math.floor(acc*100)/100}`;
 }
 
