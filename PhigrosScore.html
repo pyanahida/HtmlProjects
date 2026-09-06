@@ -189,15 +189,23 @@ function calculate() {
     // 计算
     const panDingFen = 900_000 * (perfect + good * 0.65) / total;
     const lianJiFen = 100_000 * (cb / total);
-    const score = (total != 0) ? (panDingFen + lianJiFen) : 1_000_000;
-    const parsedScore = ~~score;
+    let score = (total != 0) ? (panDingFen + lianJiFen) : 1_000_000;
 
     const acc = (perfect + good * 0.65) / total;
+
+    // 课题
+    if (keti) {
+        score = acc * 10_000_000
+    }
+    
+    // 格式化
+    const parsedScore = ~~score;
+    const parsedAcc = (acc*100).toFixed(2);
     
     // 显示
     document.getElementById("res").classList.remove("hide");
     document.getElementById("res-score").textContent = `${parsedScore}`.padStart(7, '0');
-    document.getElementById("res-acc").textContent = `${acc*100.toFixed(2)}`;
+    document.getElementById("res-acc").textContent = `${parsedAcc}%`;
     show(parsedScore, (bad + miss == 0));
 
     return;
