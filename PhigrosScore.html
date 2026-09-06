@@ -74,6 +74,37 @@ function autoReplace(id, regex, replace = '') {
 }
 
 // 插了这么多个base64，给网页GitHub卡掉帧了
+const ids = ["P","L","V","S","A","B","C","F"];
+function show(score, fc) {
+    let correspond;
+    // FC
+    if (fc) correspond = "L";
+    // 非FC
+    else if (score == 1_000_000) {
+        correspond = "P";
+    } else if (score >= 960_000) {
+        correspond = "V";
+    } else if (score >= 920_000) {
+        correspond = "S";
+    } else if (score >= 880_000) {
+        correspond = "A";
+    } else if (score >= 820_000) {
+        correspond = "B";
+    } else if (score == 700_000) {
+        correspond = "C";
+    } else {
+        correspond = "F";
+    }
+    
+    // 显示
+    for (let i of ids) {
+        if (i == correspond) {
+            document.getElementById(i).classList.remove("hide");
+        } else {
+            document.getElementById(i).classList.hide("hide");
+        }
+    }
+}
 
 function calculate() {
     // 取值
@@ -84,6 +115,11 @@ function calculate() {
     const cb      = Number(document.getElementById("ipt-max").value);
     
     const total = perfect + good + bad + miss;
+
+    // 检查不合理
+    if (cb > perfect + good) {
+        return w();
+    }
     
     // 计算
     const panDingFen = 900_000 * (perfect + good * 0.65) / total;
@@ -97,6 +133,9 @@ function calculate() {
     document.getElementById("res").classList.remove("hide");
     document.getElementById("res-score").textContent = `${parsedScore}`.padStart(7, '0');
     document.getElementById("res-acc").textContent = `${Math.floor(acc*100)/100}`;
+    show(parsedScore, (bad + miss == 0));
+
+    return;
 }
 
 autoReplace("ipt-per", /[^0-9]/g);
