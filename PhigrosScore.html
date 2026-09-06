@@ -128,11 +128,12 @@ function autoReplace(id, regex, replace = '') {
 const ids = ["P","L","V","S","A","B","C","F"];
 function show(score, fc) {
     let correspond;
-    // FC
-    if (fc) correspond = "L";
-    // 非FC
-    else if (score == 1_000_000) {
+    
+    // 评级
+    if (score == 1_000_000) {
         correspond = "P";
+    } else if (fc) {
+        correspond = "L";
     } else if (score >= 960_000) {
         correspond = "V";
     } else if (score >= 920_000) {
