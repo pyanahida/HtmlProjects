@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phigros分数计算器</title>
+<style>
+html, body {
+    height: 100%;
+}
+
+input, button {
+    width: 100vw;
+}
+
+.hide {
+    display: none;
+}
+</style>
+</head>
+<body>
+<h1>Phigros分数计算器</h1>
+<input id="ipt-per" placeholder="Perfect"  type="text">
+<input id="ipt-goo" placeholder="Good"     type="text">
+<input id="ipt-bad" placeholder="Bad"      type="text">
+<input id="ipt-mis" placeholder="Miss"     type="text">
+<input id="ipt-max" placeholder="MaxCombo" type="text">
+<button onclick="calculate()">计算</button>
+<hr>
+<p id="res" class="hide">
+Score: <span id="res-score"></span>
+</p>
+<script>
+// 实时替换输入框文本（自动修正光标位置）
+function autoReplace(id, regex, replace = '') {
+    const input = document.getElementById(id);
+    if (!input) return; // 容错
+    
+    input.addEventListener('input', function() {
+        const pos = this.selectionStart;          // 记录光标位置
+        const old = this.value;
+        const now = old.replace(regex, replace);
+        if (old === now) return;                  // 无变化就退出
+        
+        this.value = now;
+        // 重新计算光标位置：光标前原文本替换后的长度
+        const newPos = old.substring(0, pos).replace(regex, replace).length;
+        this.setSelectionRange(newPos, newPos);
+    });
+}
+
+function calculate() {
+    // 取值
+    const perfect = Number(document.getElementById("ipt-per").value);
+    const good    = Number(document.getElementById("ipt-goo").value);
+    const bad     = Number(document.getElementById("ipt-bad").value);
+    const miss    = Number(document.getElementById("ipt-mis").value);
+    const cb      = Number(document.getElementById("ipt-max").value);
+    
+    const total = perfect + good + bad + miss;
+    
+    // 计算
+    const panDingFen = 900_000 * (perfect + good * 0.65) / total;
+    const lianJiFen = 100_000 * (cb / total);
+    const score = panDingFen + lianJiFen;
+    
+    // 显示
+    document.getElementById("res").classList.remove("hide");
+    document.getElementById("res-score").textContent = `${score}`;
+}
+
+autoReplace("ipt-per", /[^0-9]/g);
+autoReplace("ipt-goo", /[^0-9]/g);
+autoReplace("ipt-bad", /[^0-9]/g);
+autoReplace("ipt-mis", /[^0-9]/g);
+
+</script>
+</body>
+</html>
