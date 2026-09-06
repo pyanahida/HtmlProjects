@@ -120,7 +120,11 @@ function autoReplace(id, regex, replace = '') {
     });
 }
 
-// 插了这么多个base64，给网页GitHub卡掉帧了
+/*
+插了这么多个base64，给网页GitHub卡掉帧了
+具体而言，我使用的是网页版的，所以代码源码是实时出现的
+这会导致加载变得特别慢，但渲染的时候没有任何的问题，所以不要误解这句话的意思
+*/
 const ids = ["P","L","V","S","A","B","C","F"];
 function show(score, fc) {
     let correspond;
