@@ -107,6 +107,7 @@ ACC（Accuracy，打击精准度）满分为 100.00%，它不包含任何连击�
 
 function keti() {
     keti = !keti;
+    document.getElementById('kt').textContent = `切换为${keti?'普通':'课题'}模式`;
 }
 
 // 实时替换输入框文本（自动修正光标位置）
