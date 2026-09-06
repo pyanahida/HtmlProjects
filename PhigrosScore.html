@@ -37,7 +37,8 @@ input, button {
 <button onclick="calculate()">计算</button>
 <hr>
 <p id="res" class="hide">
-Score: <span id="res-score"></span>
+Score: <span id="res-score"></span><br>
+Accuracy: <span id="res-acc"></span>
 </p>
 <script>
 // 实时替换输入框文本（自动修正光标位置）
@@ -78,13 +79,14 @@ function calculate() {
     // 显示
     document.getElementById("res").classList.remove("hide");
     document.getElementById("res-score").textContent = `${~~score}`.padStart(7, '0');
+    document.getElementById("res-acc").textContent = `${Math.floor(acc*100)/100}`;
 }
 
 autoReplace("ipt-per", /[^0-9]/g);
 autoReplace("ipt-goo", /[^0-9]/g);
 autoReplace("ipt-bad", /[^0-9]/g);
 autoReplace("ipt-mis", /[^0-9]/g);
-
+autoReplace("ipt-max", /[^0-9]/g);
 </script>
 </body>
 </html>
