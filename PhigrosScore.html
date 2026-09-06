@@ -75,7 +75,7 @@ function calculate() {
     
     // 显示
     document.getElementById("res").classList.remove("hide");
-    document.getElementById("res-score").textContent = `${~~score}`.padStart(7, '0');
+    document.getElementById("res-score").textContent = `${Math.trunc(score)}`.padStart(7, '0');
 }
 
 autoReplace("ipt-per", /[^0-9]/g);
