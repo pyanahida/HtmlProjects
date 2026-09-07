@@ -56,7 +56,7 @@ Accuracy: <span id="res-acc"></span>
 <img id="F" alt="F" class="hide" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAACACAYAAAAvZ8aYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOcSURBVHhe7dy/61V1HMdxIzQyEC1CJ6EmaWupxlr7oa7uLoJ/hOCg4FDh1B/Q6OLaXxC0FGVE3zUnQRHEEiVfH0g4fHle+x65r/u+531fw2N53nuO33Neg3j9nntob28vmsMYvWCMXjBGLxijF4zRC8boBWP0gjF6wRi9YIxeMEYvGKMXjNELxugFY/SCMXrBGL1gjF4wRi8YoxeM0QvG6AWjyXvy1QGdkw+EzvPCMflIPpXPZXr82WLTn2VqvPaJvC50TRYYTa7IM/nnAMb7bgid54VL8lAeyd9C59k2T+UneVfomiwwmlyTf2f4Wug8w2G5JXTctvtdTgldlwVGk3WOfFr+FDpu292Rk0LXZYHRZJ0jj7+DHwsdt+0y8sTLRr4qdMwSZOSJVSMflR+EjlmCjDyxauQz8pfQMUuQkSdWjXxBxj9F6JglyMgTq0a+KfT+pcjIEzTycflR6P1LkZEnaOTxMeYDofcvxR+SD0P+QyOfl58X7Ff5Xsbn7vuvzQajydyRv5X953hT3l64t2T/dVlhNFnHyPEKMJpk5CIYTTJyEYwmGbkIRpOMXASjSUYugtEkIxfBaJKRi2A0ychFMJpk5CIYTTJyEYwmGbkIRpOMXASjSUYugtEkIxfBaJKRi2A0ychFMJpk5CIYTTJyEYwmc0f+Rug8MRNGk7kj35Yv5MtXRE/6rxP9mcN47TMZv3RI92HjMJrMHXk8CkNP62+7J3JXPhS6DxuH0WTuyEs2HgAYDwLQfdg4jCa7NPJ9ycjNZeQdkJF3QEbeARl5B2TkHZCRd0BG3gHjOz8/FroPG4fRZO7I9+SXBRrfJjC+Z+x9ofuwcRhN5o78nZwQelp/m70j4+siXhO6DxuH0WTuyPn/5DXBaJKRi2A0ychFMJpk5CIYTTJyEYwmGbkIRpOMXASjSUYugtEkIxfBaJKRi2A0ychFMJpk5CIYTTJyEYwmGbkIRpOMXASjSUYugtEkIxfBaJKRi2A0ychFMJpk5CIYTTJyEYwmGbkIRpOMXASjSUYugtEkIxfBaJKRi2A0ychFMJpk5CIYTTJyEYwmGbkIRpOMXASjyXWhMVe5KXSemAmjyUX5TcaT+P/njlwWOk/MhNHkiIyn8A/qDaHzxEwYoxeM0QvG6AVj9IIxesEYvWCMXjBGLxijF4zRC8boBWP0gjF6wRi9YIxeMEYvGKMXjNELxugFY/SCMXrBGL1gjE72Dj0H3fJNetoUzxAAAAAASUVORK5CYII=">
 
 <script>
-let keti = False;
+let isKeti = False;
 
 // 给看源码的人看的
 const helpOfPhigrosScore = `
@@ -106,7 +106,7 @@ ACC（Accuracy，打击精准度）满分为 100.00%，它不包含任何连击�
 `;
 
 function keti() {
-    keti = !keti;
+    isKeti = !isKeti;
     document.getElementById('kt').textContent = `切换为${keti?'普通':'课题'}模式`;
 }
 
