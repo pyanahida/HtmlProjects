@@ -190,7 +190,7 @@ function calculate() {
     // 计算
     const panDingFen = 900_000 * (perfect + good * 0.65) / total;
     const lianJiFen = 100_000 * (cb / total);
-    let score = (total != 0) ? (panDingFen + lianJiFen) : 1_000_000;
+    let score = (total != 0) ? (panDingFen + lianJiFen) : 1_000_000; // 校验除0
 
     const acc = (perfect + good * 0.65) / total;
 
