@@ -207,7 +207,7 @@ function calculate() {
     document.getElementById("res").classList.remove("hide");
     document.getElementById("res-score").textContent = `${parsedScore}`.padStart(7, '0');
     // 课题不必显示acc
-    if (!keti) document.getElementById("res-acc").textContent = `${parsedAcc}%`;
+    if (!iaKeti) document.getElementById("res-acc").textContent = `${parsedAcc}%`;
     show(parsedScore, (bad + miss == 0));
 
     return;
