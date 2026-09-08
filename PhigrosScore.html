@@ -32,8 +32,8 @@ input, button {
 </style>
 </head>
 <body>
-<h1>Phigros分数计算器</h1>
-<p>SCORE Calculator of Phigros</p>
+<h1><span id="phigros-1">Phigros分数计算器</span></h1>
+<p>SCORE Calculator of <span id="phigros-2">Phigros</span></p>
 <input id="ipt-per" placeholder="Perfect"  type="text">
 <input id="ipt-goo" placeholder="Good"     type="text">
 <input id="ipt-bad" placeholder="Bad"      type="text">
@@ -242,6 +242,14 @@ autoReplace("ipt-goo", /[^0-9]/g);
 autoReplace("ipt-bad", /[^0-9]/g);
 autoReplace("ipt-mis", /[^0-9]/g);
 autoReplace("ipt-max", /[^0-9]/g);
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (nowIsAprilFoolsDay()) {
+        for (int i = 1; i <= 2; i++) {
+            document.getElementById(`phigros-${i}`).textContent = 'Pんi9rOS';
+        }
+    }
+});
 </script>
 </body>
 </html>
