@@ -121,6 +121,14 @@ function keti() {
     document.getElementById('kt').textContent = `切换为${mode1}模式 / Switch to ${mode2} mode`;
 }
 
+// 愚人节？
+function nowIsAprilFoolsDay() {
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+    return `${month}/${day}` === `4/1`;
+}
+
 // 实时替换输入框文本（自动修正光标位置）
 function autoReplace(id, regex, replace = '') {
     const input = document.getElementById(id);
