@@ -32,7 +32,7 @@ input, button {
 </style>
 </head>
 <body>
-<h1><span id="phigros-1">Phigros分数计算器</span></h1>
+<h1><span id="phigros-1">Phigros</span>分数计算器</h1>
 <p>SCORE Calculator of <span id="phigros-2">Phigros</span></p>
 <input id="ipt-per" placeholder="Perfect"  type="text">
 <input id="ipt-goo" placeholder="Good"     type="text">
@@ -59,6 +59,7 @@ Score: <span id="res-score"></span><br>
 
 <script>
 let isKeti = false;
+const foolText = "Pんi9rOS";
 
 // 给看源码的人看的
 const helpOfPhigrosScore = [`
@@ -246,10 +247,21 @@ autoReplace("ipt-max", /[^0-9]/g);
 document.addEventListener('DOMContentLoaded', function() {
     if (nowIsAprilFoolsDay()) {
         for (let i = 1; i <= 2; i++) {
-            document.getElementById(`phigros-${i}`).textContent = 'Pんi9rOS';
+            document.getElementById(`phigros-${i}`).textContent = foolText;
         }
+        document.title = `${foolText}分数计算器 | PYANAHIDA | GIT-MIT`;
     }
 });
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
