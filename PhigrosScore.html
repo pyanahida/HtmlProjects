@@ -245,6 +245,12 @@ autoReplace("ipt-mis", /[^0-9]/g);
 autoReplace("ipt-max", /[^0-9]/g);
 
 document.addEventListener('DOMContentLoaded', function() {
+    const title = document.getElementById('phigros-1');
+    title.addEventListener('click', () => {
+        const angle = Math.floor(Math.random() * 359) + 1;
+        title.style.transform = `rotate(${angle}deg)`;
+    });
+    
     if (nowIsAprilFoolsDay()) {
         for (let i = 1; i <= 2; i++) {
             document.getElementById(`phigros-${i}`).textContent = foolText;
