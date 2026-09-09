@@ -60,6 +60,7 @@ Score: <span id="res-score"></span><br>
 <script>
 let isKeti = false;
 const foolText = "Pんi9rOS";
+let rotated = false;
 
 // 给看源码的人看的
 const helpOfPhigrosScore = [`
@@ -247,7 +248,8 @@ autoReplace("ipt-max", /[^0-9]/g);
 document.addEventListener('DOMContentLoaded', function() {
     const title = document.getElementById('phigros-1');
     title.addEventListener('click', () => {
-        const angle = Math.floor(Math.random() * 359) + 1;
+        rotated = !rotated;
+        const angle = (rotated) ? Math.floor(Math.random() * 359) + 1 : 0;
         title.style.transform = `rotate(${angle}deg)`;
     });
     
