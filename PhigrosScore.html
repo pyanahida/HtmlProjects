@@ -32,10 +32,22 @@ input, button {
 .hide {
     display: none;
 }
+
+div.wrap {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0ex;
+}
+.wrap h1 {
+    margin: 0px;
+    white-space: nowrap;
+}
 </style>
 </head>
 <body>
-<h1><span id="phigros-1">Phigros</span>分数计算器</h1>
+<div class="wrap">
+<h1 id="phigros-1">Phigros</h1><h1>分数计算器</h1>
+</div>
 <p>SCORE Calculator of <span id="phigros-2">Phigros</span></p>
 <input id="ipt-per" placeholder="Perfect"  type="text">
 <input id="ipt-goo" placeholder="Good"     type="text">
