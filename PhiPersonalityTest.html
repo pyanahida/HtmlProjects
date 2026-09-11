@@ -9,12 +9,39 @@
 </style>
 </head>
 <body>
-  <div>
+  <div id="Q1">
     <p>Q1: Choose a role according to your mood:</p>
-    <button>鸠 / Hato</button>
+    <button onclick="turnToPage(2)">鸠 / Hato</button>
+    <button onclick="turnToPage(2)">吉诺 / Gino</button>
   </div>
   <script>
-
+    function turnToPage(page) {
+      let i = 1;
+      while (true) {
+        const el = document.getElementById(`Q${i}`);
+        if (el === null) break;
+        if (i === page) el.classList.remove("hide");
+        else el.classList.add("hide");
+        i++;
+      }
+    }
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--ff-->
