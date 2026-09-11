@@ -13,8 +13,8 @@
 <body>
   <div id="Q1">
     <p>Q1: Choose a role according to your mood:</p>
-    <button onclick="turnToPage(2);hint('We are arranging the next question...')">鸠 (Hato)</button>
-    <button onclick="turnToPage(2);hint('We are arranging the next question...')">吉诺 (Gino)</button>
+    <button onclick="turnToPage(2)">鸠 (Hato)</button>
+    <button onclick="turnToPage(2)">吉诺 (Gino)</button>
   </div>
   <div id="Q2">
     <p>Q2: What do you think he/she hates?</p>
@@ -28,9 +28,18 @@
   </div>
   <script>
     const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+    function hint(text) {
+      alert(text);
+      await sleep(2000);
+    }
     
     function turnToPage(page) {
       let i = 1;
+      const text = (page==2) ? "We are arranging the next question..." :
+        ("We are calculating...");
+      hint(text);
+      
       while (true) {
         const el = document.getElementById(`Q${i}`);
         if (el === null) break;
@@ -38,11 +47,6 @@
         else el.classList.add("hide");
         i++;
       }
-    }
-
-    function hint(text) {
-      alert(text);
-      await sleep(2000);
     }
 
     document.addEventListener('DOMContentLoaded', function() {
