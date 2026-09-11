@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Test your phi-personality</title>
 <style>
-.hide {
-  dispaly: none;
-}
+  .hide {
+    dispaly: none;
+  }
 </style>
 </head>
 <body>
@@ -26,19 +26,37 @@
     <button onclick="turnToPage(4)">小笼包 (xiaolongbao, soup dumplings)</button>
     <button onclick="turnToPage(4)">Note (?)</button>
   </div>
+  <div id="Q4">
+    <h1 id="parsed"></h1>
+    <p>How would you choose now?<br>To press the start button, or to turn the screen upside down?</p>
+    <button onclick="turnToPage(5)">START</button>
+    <button onclick="turnToPage(5)">Turn the screen</button>
+  </div>
+  <div id="Q5">
+    <p>Hey, I didn't say it's going to start next. There are still some tests to be done.</p>
+    <button onclick="turnToPage(6)">Alright...</button>
+    <button onclick="turnToPage(6)">Please hurry up</button>
+  </div>
   <script>
     const sleep = ms => new Promise(r => setTimeout(r, ms));
+    const songName = "Oblivion:PHIN";
+    const songName_3f = songName.replace(/o/g, "").replace(/[^:iIlLnN]/g, "?").replace(/:/g, "??");
 
     function hint(text) {
       alert(text);
-      await sleep(2000);
+      await sleep(2500);
     }
     
     function turnToPage(page) {
       let i = 1;
-      const text = (page==2) ? "We are arranging the next question..." :
-        ("We are calculating...");
-      hint(text);
+      if (page >= 2 && page <= 4) {
+        const text = (page == 2) ? "We are arranging the next question..." : (
+          (page == 3 ? "We are calculating..." : (
+            (page == 4) ? "We are correcting the result..." : "DEFAULT TEXT"
+          ))
+        );
+        hint(text);
+      }
       
       while (true) {
         const el = document.getElementById(`Q${i}`);
@@ -51,6 +69,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
       turnToPage(1);
+      document.getElementById("parsed").textContent = songName_3f;
     });
   </script>
 </body>
@@ -71,4 +90,96 @@
 
 
 
-<!--ff-->
+<!--ffj--><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Test your phi-personality</title>
+<style>
+  .hide {
+    dispaly: none;
+  }
+</style>
+</head>
+<body>
+  <div id="Q1">
+    <p>Q1: Choose a role according to your mood:</p>
+    <button onclick="turnToPage(2)">鸠 (Hato)</button>
+    <button onclick="turnToPage(2)">吉诺 (Gino)</button>
+  </div>
+  <div id="Q2">
+    <p>Q2: What do you think he/she hates?</p>
+    <button onclick="turnToPage(3)">Outdoors</button>
+    <button onclick="turnToPage(3)">Indoors</button>
+  </div>
+  <div id="Q3">
+    <p>Q1: Choose a food that you like:</p>
+    <button onclick="turnToPage(4)">小笼包 (xiaolongbao, soup dumplings)</button>
+    <button onclick="turnToPage(4)">Note (?)</button>
+  </div>
+  <div id="Q4">
+    <h1 id="parsed"></h1>
+    <p>How would you choose now?<br>To press the start button, or to turn the screen upside down?</p>
+    <button onclick="turnToPage(5)">START</button>
+    <button onclick="turnToPage(5)">Turn the screen</button>
+  </div>
+  <div id="Q5">
+    <p>Hey, I didn't say it's going to start next. There are still some tests to be done.</p>
+    <button onclick="turnToPage(6)">Alright...</button>
+    <button onclick="turnToPage(6)">Please hurry up</button>
+  </div>
+  <script>
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    const songName = "Oblivion:PHIN";
+    const songName_3f = songName.replace(/o/g, "").replace(/[^:iIlLnN]/g, "?").replace(/:/g, "??");
+
+    function hint(text) {
+      alert(text);
+      await sleep(2500);
+    }
+    
+    function turnToPage(page) {
+      let i = 1;
+      if (page >= 2 && page <= 4) {
+        const text = (page == 2) ? "We are arranging the next question..." : (
+          (page == 3 ? "We are calculating..." : (
+            (page == 4) ? "We are correcting the result..." : "DEFAULT TEXT"
+          ))
+        );
+        hint(text);
+      }
+      
+      while (true) {
+        const el = document.getElementById(`Q${i}`);
+        if (el === null) break;
+        if (i === page) el.classList.remove("hide");
+        else el.classList.add("hide");
+        i++;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      turnToPage(1);
+      document.getElementById("parsed").textContent = songName_3f;
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--ffj-->
