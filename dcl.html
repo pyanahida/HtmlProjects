@@ -19,9 +19,12 @@
   <p><a href="https://b23.tv/CXeJZRJ">点我看视频</a></p>
   <script>
     const tip = `\n  <p>网页作者是D</p>`;
+    const randint = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    const zdiv = (a, b) => Math.floor(a / b);
 
     function wantToPlayGenshin() {
-      alert('哒哒哒哒哒，好想玩原神');
+      const a = zdiv(randint(40,48),8);
+      alert(`哒哒哒哒哒，好想玩原神`);
     }
   </script>
 </body>
