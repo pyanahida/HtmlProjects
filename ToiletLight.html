@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Toilet Light</title>
+<style>
+button {
+    background-color: #E0E0E0;
+    border: 2px solid #CDCBCB;
+    color: #353535;
+    width: 100vw;
+    height: 5vh;
+    margin: 0px;
+}
 
+button.not-first {
+    margin-top: -2px;     /* Merge borders */
+}
+</style>
+</head>
+<body>
+<button onclick="change(1)">💡 Lighting</button>
+<button class="not-first" onclick="change(2)">🌙 Night light</button>
+<button class="not-first" onclick="change(0)">❎ Standby</button>
+<script>
+// Values
+let now = 0;
+const colors = ["#000000", "#FBFBFB", "#CECECE", "#CDCBCB", "#1256C8"];
+
+// Refresh
+function refresh() {
+    document.body.style.backgroundColor = colors[now];
+}
+
+// Asynchronous blocking
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Play audio
+function tone(hz, ms) {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();   // Generate waveform
+    const gain = ctx.createGain();        // Control volume
+
+    osc.type = 'sine';                    // Waveform: sine (softest)
+    osc.frequency.value = hz;             // Frequency, Hz
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);        // Connect to speaker
+
+    osc.start();
+
+    // Stop and close the context when the time is up
+    setTimeout(() => {
+        osc.stop();
+        ctx.close();
+    }, ms);
+}
+
+// Prompt feedback when pressing the button
+async function hint() {
+    document.styleSheets[0].cssRules[0].style.borderColor = colors[4];
+    tone(3050, 75);
+    await sleep(750);
+    document.styleSheets[0].cssRules[0].style.borderColor = colors[3];
+}
+
+function change(goal) {
+    if (goal == now) now = 0;
+    else now = goal;
+    refresh();
+    hint();
+}
+</script>
+</body>
+</html>
