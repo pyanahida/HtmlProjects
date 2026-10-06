@@ -11,7 +11,7 @@ body {
     color: #000;
 }
 .out {
-    width: 100vw;
+    width: 50vw;
     height: 10vh;
     border: 2px solid #000;
     font-size: 36px;
@@ -21,9 +21,9 @@ body {
 
 .show {
     width: 100vw;
-    height: 10vh;
     font-size: 22px;
-    text-decoration: underline solid #000 2px;
+    border-bottom: solid #000 2px;
+    overflow-x: auto;
 }
 </style>
 </head>
@@ -39,8 +39,12 @@ body {
     <circle id="c7" cx="75" cy="375" r="25" fill="#FFF" stroke-width="2" stroke="#000" />
     <circle id="c8" cx="175" cy="375" r="25" fill="#FFF" stroke-width="2" stroke="#000" />
 </svg>
-<button class="out" onclick="output()">Output</button>
-<p class="show" id="show"></p>
+<div style="display:flex; gap:0px;">
+    <button class="out" onclick="output()">Output</button>
+    <button class="out" onclick="ac()">AC</button>
+</div>
+<!-- Insert a zero-width space to prevent the content height from being too low when there is nothing, as the absence of text can result in an excessively high underline(bottom border) -->
+<p class="show" id="show">&#x200b;</p>
 <script>
 const table = {
     "": "\u2800",
@@ -324,6 +328,14 @@ function output() {
         gotChar = "\uFFFD";
     }
     show.textContent += gotChar;
+}
+
+function ac() {
+    for (let i = 1; i <= 8; i++) {
+        const circ = document.getElementById(`c${i}`);
+        cond[i - 1] = false;
+        circ.setAttribute('fill', '#FFF');
+    }
 }
 
 window.addEventListener('load', () => {
